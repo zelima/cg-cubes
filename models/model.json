@@ -1,0 +1,72 @@
+{
+  "dimensions": [
+    {
+      "name": "country",
+      "label": "Country"
+    },
+    {
+      "name":"asn",
+      "label": "ASN"
+    },
+    {
+      "name":"risk",
+      "label": "Risk"
+    },
+    {
+      "name":"dim_date",
+      "label": "Date",
+      "role": "time",
+      "levels": [
+        {
+          "name":"year",
+          "label":"Year"
+        },
+        {
+          "name":"quarter",
+          "label":"Quarter"
+        },
+        {
+          "name":"month",
+          "label":"Month"
+        },
+        {
+          "name":"week",
+          "label":"Week"
+        },
+        {
+          "name":"week_start",
+          "label":"Week Start"
+        }
+      ]
+    }
+  ],
+  "cubes": [
+    {
+      "name": "fact_count",
+      "label": "Fact Count",
+      "dimensions": ["country", "risk", "dim_date", "asn"],
+      "measures": [
+        {"name":"count", "label":"Count"},
+        {"name":"count_amplified", "label":"Aplified Count"}
+      ],
+      "aggregates": [
+        {
+          "name": "sum_count",
+          "function": "sum",
+          "measure": "count"
+        },
+        {
+          "name": "sum_amplified_count",
+          "function": "sum",
+          "measure": "count_amplified"
+        }
+      ],
+      "joins": [
+        {
+          "master": "fact_count.date",
+          "detail": "dim_date.date"
+        }
+      ]
+    }
+  ]
+}
