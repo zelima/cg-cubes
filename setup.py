@@ -31,5 +31,5 @@ def setup_config(config):
     return config
 
 config = setup_config('slicer.ini')
-server = server.create_server(config)
+cg_server = server.create_server(config)
 # run_server(config, server)
