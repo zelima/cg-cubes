@@ -29,7 +29,8 @@ def setup_config(config):
     else:
         raise Exception("No Database URL found. Please export CG_URL=postress://etc...")
     return config
-
-config = setup_config('slicer.ini')
-# cg_server = server.create_server(config)
-run_server(config, server)
+if __name__ == '__main__':
+    # main()
+    config = setup_config('slicer.ini')
+    # cg_server = server.create_server(config)
+    server.run_server(config, server)
